@@ -5,6 +5,7 @@ import org.dopaminz.common.exception.ConflictException;
 import org.dopaminz.common.exception.UnauthorizedException;
 import org.dopaminz.controller.request.LoginRequest;
 import org.dopaminz.controller.request.SignupRequest;
+import org.dopaminz.controller.response.MemberResponse;
 import org.dopaminz.entity.Member;
 import org.dopaminz.repository.MemberRepository;
 import org.springframework.data.repository.query.Param;
@@ -32,5 +33,10 @@ public class MemberService {
                 .orElseThrow(() -> new UnauthorizedException("없는 아이디입니다."));
         member.login(request.password());
         return member.getId();
+    }
+
+    public MemberResponse findByMemberId(Long memberId) {
+        Member member = memberRepository.getById(memberId);
+        return MemberResponse.from(member);
     }
 }
