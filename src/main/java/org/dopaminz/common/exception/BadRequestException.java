@@ -1,7 +1,8 @@
 package org.dopaminz.common.exception;
 
-public class BadRequestException extends RuntimeException {
+public class BadRequestException extends DopaminzException {
+
     public BadRequestException(String message) {
-        super(message);
+        super(message, 400);
     }
 }
