@@ -9,5 +9,4 @@ public class DopaminzApplication {
     public static void main(String[] args) {
         SpringApplication.run(DopaminzApplication.class, args);
     }
-
 }
