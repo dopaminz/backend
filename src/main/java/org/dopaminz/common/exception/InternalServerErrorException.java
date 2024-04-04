@@ -1,7 +1,8 @@
 package org.dopaminz.common.exception;
 
-public class InternalServerErrorException extends RuntimeException {
+public class InternalServerErrorException extends DopaminzException {
+
     public InternalServerErrorException(String message) {
-        super(message);
+        super(message, 500);
     }
 }
