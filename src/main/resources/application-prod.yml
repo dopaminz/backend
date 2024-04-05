@@ -1,4 +1,9 @@
 spring:
+  datasource:
+    url: jdbc:mysql://mysql:3306/unition
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
     properties:
@@ -6,9 +11,10 @@ spring:
         format_sql: true
         use_sql_comments: true
         highlight_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
 
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
 
 token:
   secretKey: "dsakljqd1idj8qwjddj12idjdsakljqd1idj8qwjddj12idjdsakljqd1idj8qwjddj12idjdsakljqd1idj8qwjddj12idjdsakljqd1idj8qwjddj12idj"

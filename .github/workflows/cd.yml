@@ -12,8 +12,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "/**"
 
 jobs:
   backend-docker-build-and-push:
@@ -76,6 +74,7 @@ jobs:
         run: |
           docker run \
             -d \
+            --network unition-net \
             --name ${{ env.DOCKER_CONTAINER_NAME }} \
             -p 8080:8080 \
             -e "SPRING_PROFILES_ACTIVE=${{ env.PROFILE }}" \
