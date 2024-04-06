@@ -23,7 +23,7 @@ public record PollSimpleResponse(
         LocalDateTime createdDate
 ) {
     public static PollSimpleResponse from(Poll poll, Vote vote) {
-        Boolean isVoted = vote != null;
+        boolean isVoted = vote != null;
         int votedNumber = isVoted ? vote.getVoteNumber() : 0;
         return new PollSimpleResponse(
                 poll.getId(),
