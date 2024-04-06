@@ -17,7 +17,8 @@ public record PollSimpleResponse(
         int vote2Count,
         Category category,
         Boolean isVoted,
-        int votedNumber
+        int votedNumber,
+        LocalDateTime createdDate
 ) {
     public static PollSimpleResponse from(Poll poll, Vote vote) {
         Boolean isVoted = vote != null;
@@ -34,7 +35,8 @@ public record PollSimpleResponse(
                 poll.getVote2Count(),
                 poll.getCategory(),
                 isVoted,
-                votedNumber
+                votedNumber,
+                poll.getCreatedDate()
         );
     }
 }

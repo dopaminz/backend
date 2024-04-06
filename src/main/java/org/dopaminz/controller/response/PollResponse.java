@@ -19,6 +19,7 @@ public record PollResponse(
         Category category,
         Boolean isVoted,
         int votedNumber,
+        LocalDateTime createdDate,
         List<CommentResponse> comments
 ) {
 
@@ -38,6 +39,7 @@ public record PollResponse(
                 poll.getCategory(),
                 isVoted,
                 votedNumber,
+                poll.getCreatedDate(),
                 comments
         );
     }
