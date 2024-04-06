@@ -8,11 +8,12 @@ import jakarta.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.dopaminz.common.entity.BaseEntity;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-public class Poll {
+public class Poll extends BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

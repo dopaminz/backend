@@ -9,13 +9,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.dopaminz.common.entity.BaseEntity;
 import org.dopaminz.common.exception.UnauthorizedException;
 import org.dopaminz.common.security.Sha256;
 
 @Getter
 @NoArgsConstructor(access = PROTECTED)
 @Entity
-public class Member {
+public class Member extends BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

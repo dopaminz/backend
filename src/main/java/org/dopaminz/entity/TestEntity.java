@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.dopaminz.common.entity.BaseEntity;
 
 import static jakarta.persistence.GenerationType.*;
 import static lombok.AccessLevel.*;
@@ -14,7 +15,7 @@ import static lombok.AccessLevel.*;
 @Entity
 @NoArgsConstructor(access = PROTECTED)
 @Getter
-public class TestEntity {
+public class TestEntity extends BaseEntity<Long> {
 
     @Id @GeneratedValue(strategy = IDENTITY)
     private Long id;

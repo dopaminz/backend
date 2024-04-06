@@ -11,13 +11,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.dopaminz.common.entity.BaseEntity;
 import org.dopaminz.common.exception.BadRequestException;
 import org.dopaminz.common.exception.ForbiddenException;
 
 @Getter
 @NoArgsConstructor(access = PROTECTED)
 @Entity
-public class Vote {
+public class Vote extends BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
