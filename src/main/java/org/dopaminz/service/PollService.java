@@ -2,6 +2,8 @@ package org.dopaminz.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
+
 import lombok.RequiredArgsConstructor;
 import org.dopaminz.controller.request.PollRequest;
 import org.dopaminz.controller.response.CommentResponse;
@@ -40,7 +42,7 @@ public class PollService {
         Member member = memberRepository.getById(memberId);
         Page<Poll> response;
         LocalDateTime now = LocalDateTime.now();
-        if (categories.isEmpty()) {
+        if (Objects.isNull(categories)) {
             if (isFinish) {
                 response = pollRepository.findAllFinishedPolls(now, pageable);
             } else {
