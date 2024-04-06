@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.dopaminz.controller.request.PollRequest;
 import org.dopaminz.controller.response.CommentResponse;
+import org.dopaminz.controller.response.MyPollSimpleResponse;
 import org.dopaminz.controller.response.PollResponse;
 import org.dopaminz.controller.response.PollSimpleResponse;
 import org.dopaminz.entity.Category;
@@ -56,6 +57,14 @@ public class PollService {
             Vote vote = voteRepository.findByPollAndMember(poll, member).orElse(null);
             return PollSimpleResponse.from(poll, vote);
         });
+    }
+
+    public List<MyPollSimpleResponse> getByMemberId(Long memberId) {
+        Member member = memberRepository.getById(memberId);
+        return pollRepository.findAllByMemberCreatedDateDesc(member)
+                .stream()
+                .map(MyPollSimpleResponse::from)
+                .toList();
     }
 
     public PollResponse getById(Long memberId, Long pollId) {

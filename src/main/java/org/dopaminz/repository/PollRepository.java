@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import org.dopaminz.common.exception.NotFoundException;
 import org.dopaminz.entity.Category;
+import org.dopaminz.entity.Member;
 import org.dopaminz.entity.Poll;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -48,4 +49,6 @@ public interface PollRepository extends JpaRepository<Poll, Long> {
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     Optional<Poll> findWithLockById(Long id);
+
+    List<Poll> findAllByMemberCreatedDateDesc(Member member);
 }

@@ -7,6 +7,7 @@ import org.dopaminz.common.auth.Auth;
 import org.dopaminz.common.response.CommonResponse;
 import org.dopaminz.common.response.PageResponse;
 import org.dopaminz.controller.request.PollRequest;
+import org.dopaminz.controller.response.MyPollSimpleResponse;
 import org.dopaminz.controller.response.PollResponse;
 import org.dopaminz.controller.response.PollSimpleResponse;
 import org.dopaminz.entity.Category;
@@ -52,6 +53,13 @@ public class PollController {
             @PathVariable Long pollId
     ) {
         return CommonResponse.ok(pollService.getById(memberId, pollId));
+    }
+
+    @GetMapping("/my")
+    public CommonResponse<List<MyPollSimpleResponse>> getMyPoll(
+            @Auth Long memberId
+    ) {
+        return CommonResponse.ok(pollService.getByMemberId(memberId));
     }
 
     @PostMapping
