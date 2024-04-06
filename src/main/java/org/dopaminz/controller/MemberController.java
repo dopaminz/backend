@@ -29,7 +29,7 @@ public class MemberController {
     ) {
         Long memberId = memberService.signup(request);
         String token = tokenService.createToken(memberId);
-        return CommonResponse.created(new TokenResponse(token));
+        return CommonResponse.ok(new TokenResponse(token));
     }
 
     @PostMapping("/login")

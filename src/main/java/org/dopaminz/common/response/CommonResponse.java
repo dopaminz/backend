@@ -9,15 +9,7 @@ public record CommonResponse<T>(
         return new CommonResponse<>(
                 "200",
                 data,
-                "요청 성공"
-        );
-    }
-
-    public static <T> CommonResponse<T> created(T data) {
-        return new CommonResponse<>(
-                "201",
-                data,
-                "요청 성공"
+                ""
         );
     }
 }

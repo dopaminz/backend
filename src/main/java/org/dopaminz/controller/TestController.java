@@ -32,6 +32,6 @@ public class TestController {
 
     @PostMapping
     public CommonResponse<TestResponse> createTestEntity(@RequestBody TestRequest request) {
-        return CommonResponse.created(testService.create(request));
+        return CommonResponse.ok(testService.create(request));
     }
 }

@@ -27,9 +27,13 @@ public class Member {
     @Column(nullable = false)
     private String password;
 
-    public Member(String username, String password) {
+    @Column(nullable = false)
+    private String nickname;
+
+    public Member(String username, String password, String nickname) {
         this.username = username;
         this.password = Sha256.encrypt(password);
+        this.nickname = nickname;
     }
 
     public void login(String plainPassword) {

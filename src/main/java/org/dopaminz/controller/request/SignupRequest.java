@@ -4,9 +4,10 @@ import org.dopaminz.entity.Member;
 
 public record SignupRequest(
         String username,
-        String password
+        String password,
+        String nickname
 ) {
     public Member toMember() {
-        return new Member(username, password);
+        return new Member(username, password, nickname);
     }
 }
