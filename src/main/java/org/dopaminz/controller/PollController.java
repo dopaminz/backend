@@ -42,7 +42,7 @@ public class PollController {
             @RequestParam(required = false) int page,
             @Auth Long memberId
     ) {
-        Pageable pageable = PageRequest.of(page, 10, sort(hot, createdDate));
+        Pageable pageable = PageRequest.of(page, 500, sort(hot, createdDate));
         Page<PollSimpleResponse> polls = pollService.getPolls(pageable, categories, memberId, isFinish);
         return CommonResponse.ok(PageResponse.from(polls));
     }
