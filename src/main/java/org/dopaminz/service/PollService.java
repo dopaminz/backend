@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.dopaminz.controller.request.PollRequest;
 import org.dopaminz.controller.response.CommentResponse;
 import org.dopaminz.controller.response.MyPollSimpleResponse;
@@ -23,6 +24,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @RequiredArgsConstructor
 @Transactional
 @Service
@@ -57,6 +59,7 @@ public class PollService {
         }
         return response.map(poll -> {
             Vote vote = voteRepository.findByPollAndMember(poll, member).orElse(null);
+            log.info("findByPollAndMember.poll and vote {} {}", poll.getId(), vote);
             return PollSimpleResponse.from(poll, vote);
         });
     }
@@ -73,6 +76,7 @@ public class PollService {
         Member member = memberRepository.getById(memberId);
         Poll poll = pollRepository.getById(pollId);
         Vote vote = voteRepository.findByPollAndMember(poll, member).orElse(null);
+        log.info("getById.poll and vote {} {}", poll.getId(), vote);
         List<CommentResponse> commentResponse = commentRepository.findByPollId(pollId)
                 .stream()
                 .map(CommentResponse::from)

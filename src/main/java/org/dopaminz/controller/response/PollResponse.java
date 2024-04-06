@@ -26,7 +26,7 @@ public record PollResponse(
 ) {
 
     public static PollResponse from(Poll poll, List<CommentResponse> comments, Vote vote) {
-        boolean isVoted = (vote != null);
+        boolean isVoted = vote != null;
         int votedNumber = isVoted ? vote.getVoteNumber() : 0;
         return new PollResponse(
                 poll.getId(),
