@@ -5,6 +5,7 @@ import org.dopaminz.common.exception.ConflictException;
 import org.dopaminz.common.exception.UnauthorizedException;
 import org.dopaminz.controller.request.LoginRequest;
 import org.dopaminz.controller.request.SignupRequest;
+import org.dopaminz.controller.response.CheckUsableUsernameResponse;
 import org.dopaminz.controller.response.MemberResponse;
 import org.dopaminz.entity.Member;
 import org.dopaminz.repository.MemberRepository;
@@ -37,5 +38,9 @@ public class MemberService {
     public MemberResponse findByMemberId(Long memberId) {
         Member member = memberRepository.getById(memberId);
         return MemberResponse.from(member);
+    }
+
+    public CheckUsableUsernameResponse checkUsableUsername(String username) {
+        return new CheckUsableUsernameResponse(!memberRepository.existsByUsername(username));
     }
 }
