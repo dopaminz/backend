@@ -25,7 +25,7 @@ public class CommentController {
             @RequestBody CommentWriteRequest request
     ) {
         commentService.write(memberId, request);
-        return CommonResponse.ok(null);
+        return CommonResponse.ok("");
     }
 
     @DeleteMapping("/{commentId}")
@@ -34,6 +34,6 @@ public class CommentController {
             @PathVariable Long commentId
     ) {
         commentService.delete(memberId, commentId);
-        return CommonResponse.ok(null);
+        return CommonResponse.ok("");
     }
 }

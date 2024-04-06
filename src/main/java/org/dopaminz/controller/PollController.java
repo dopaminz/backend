@@ -68,7 +68,7 @@ public class PollController {
             @RequestBody PollRequest request
     ) {
         pollService.createPoll(memberId, request);
-        return CommonResponse.ok(null);
+        return CommonResponse.ok("");
     }
 
     @DeleteMapping("/{pollId}")
@@ -77,7 +77,7 @@ public class PollController {
             @PathVariable Long pollId
     ) {
         pollService.deletePoll(memberId, pollId);
-        return CommonResponse.ok(null);
+        return CommonResponse.ok("");
     }
 
     private Sort sort(boolean hot, String createdDateSort) {
