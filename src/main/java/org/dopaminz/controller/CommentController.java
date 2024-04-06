@@ -29,7 +29,7 @@ public class CommentController {
     }
 
     @DeleteMapping("/{commentId}")
-    public CommonResponse<String> write(
+    public CommonResponse<String> delete(
             @Auth Long memberId,
             @PathVariable Long commentId
     ) {
