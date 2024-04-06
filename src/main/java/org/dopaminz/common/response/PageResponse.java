@@ -1,8 +1,7 @@
 package org.dopaminz.common.response;
 
-import org.springframework.data.domain.Page;
-
 import java.util.List;
+import org.springframework.data.domain.Page;
 
 public record PageResponse<T>(
         Boolean hasNext,

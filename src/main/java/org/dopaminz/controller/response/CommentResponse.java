@@ -1,9 +1,7 @@
 package org.dopaminz.controller.response;
 
-import org.dopaminz.entity.Comment;
-import org.dopaminz.entity.Member;
-
 import java.time.LocalDateTime;
+import org.dopaminz.entity.Comment;
 
 public record CommentResponse(
         Long commentId,

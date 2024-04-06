@@ -17,8 +17,8 @@ public class TestService {
 
     public TestResponse create(final TestRequest request) {
         TestEntity testEntity = TestEntity.builder()
-                        .name(request.name())
-                        .build();
+                .name(request.name())
+                .build();
         TestEntity savedTestEntity = testEntityRepository.save(testEntity);
         return TestResponse.from(savedTestEntity);
     }

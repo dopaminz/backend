@@ -1,11 +1,10 @@
 package org.dopaminz.controller.response;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import org.dopaminz.entity.Category;
 import org.dopaminz.entity.Poll;
 import org.dopaminz.entity.Vote;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 public record PollResponse(
         Long pollId,

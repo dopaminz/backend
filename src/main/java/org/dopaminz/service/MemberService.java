@@ -8,7 +8,6 @@ import org.dopaminz.controller.request.SignupRequest;
 import org.dopaminz.controller.response.MemberResponse;
 import org.dopaminz.entity.Member;
 import org.dopaminz.repository.MemberRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -1,10 +1,9 @@
 package org.dopaminz.controller.request;
 
+import java.time.LocalDateTime;
 import org.dopaminz.entity.Category;
 import org.dopaminz.entity.Poll;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import java.time.LocalDateTime;
 
 public record PollRequest(
         Poll.PollType type,
