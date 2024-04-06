@@ -38,7 +38,7 @@ public class Member extends BaseEntity<Long> {
     }
 
     public void login(String plainPassword) {
-        if (password.equals(Sha256.encrypt(plainPassword))) {
+        if (!password.equals(Sha256.encrypt(plainPassword))) {
             throw new UnauthorizedException("비밀번호가 일치하지 않습니다.");
         }
     }
