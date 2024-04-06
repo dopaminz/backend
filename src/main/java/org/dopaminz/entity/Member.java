@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.dopaminz.common.exception.UnauthorizedException;
+import org.dopaminz.common.security.Sha256;
 
 @Getter
 @NoArgsConstructor(access = PROTECTED)
@@ -28,11 +29,11 @@ public class Member {
 
     public Member(String username, String password) {
         this.username = username;
-        this.password = password;
+        this.password = Sha256.encrypt(password);
     }
 
-    public void login(String password) {
-        if (!this.password.equals(password)) {
+    public void login(String plainPassword) {
+        if (password.equals(Sha256.encrypt(plainPassword))) {
             throw new UnauthorizedException("비밀번호가 일치하지 않습니다.");
         }
     }
