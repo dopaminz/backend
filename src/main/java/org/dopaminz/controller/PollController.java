@@ -86,7 +86,7 @@ public class PollController {
                 Order.asc("createdDate");
         Order hotOrder = hot ? Order.desc("voteTotalCount") : null;
         if (hotOrder == null) {
-            return Sort.by(createdDateSort);
+            return Sort.by(createdDateOrder);
         }
         return Sort.by(hotOrder, createdDateOrder);
     }
