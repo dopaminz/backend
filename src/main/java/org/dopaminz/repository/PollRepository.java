@@ -50,5 +50,5 @@ public interface PollRepository extends JpaRepository<Poll, Long> {
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     Optional<Poll> findWithLockById(Long id);
 
-    List<Poll> findAllByMemberCreatedDateDesc(Member member);
+    List<Poll> findAllByMemberOrderByCreatedDateDesc(Member member);
 }

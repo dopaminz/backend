@@ -63,7 +63,7 @@ public class PollService {
 
     public List<MyPollSimpleResponse> getByMemberId(Long memberId) {
         Member member = memberRepository.getById(memberId);
-        return pollRepository.findAllByMemberCreatedDateDesc(member)
+        return pollRepository.findAllByMemberOrderByCreatedDateDesc(member)
                 .stream()
                 .map(MyPollSimpleResponse::from)
                 .toList();
