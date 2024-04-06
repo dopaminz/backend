@@ -7,6 +7,8 @@ import org.dopaminz.entity.Vote;
 
 public record PollSimpleResponse(
         Long pollId,
+        Long memberId,
+        String nickname,
         Poll.PollType type,
         String title,
         String content,
@@ -25,6 +27,8 @@ public record PollSimpleResponse(
         int votedNumber = isVoted ? vote.getVoteNumber() : 0;
         return new PollSimpleResponse(
                 poll.getId(),
+                vote.getMember().getId(),
+                vote.getMember().getNickname(),
                 poll.getType(),
                 poll.getTitle(),
                 poll.getContent(),
