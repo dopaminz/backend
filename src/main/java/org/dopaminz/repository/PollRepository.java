@@ -9,6 +9,11 @@ import org.springframework.data.jpa.repository.Lock;
 
 public interface PollRepository extends JpaRepository<Poll, Long> {
 
+    default Poll getById(Long id) {
+        return findById(id)
+                .orElseThrow(() -> new NotFoundException("해당 퀵폴 혹은 사연이 존재하지 않습니다."));
+    }
+
     default Poll getWithLockById(Long id) {
         return findWithLockById(id)
                 .orElseThrow(() -> new NotFoundException("해당 퀵폴 혹은 사연이 존재하지 않습니다."));
