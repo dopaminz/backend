@@ -30,8 +30,8 @@ public record PollResponse(
         int votedNumber = isVoted ? vote.getVoteNumber() : 0;
         return new PollResponse(
                 poll.getId(),
-                vote.getMember().getId(),
-                vote.getMember().getNickname(),
+                poll.getMember().getId(),
+                poll.getMember().getNickname(),
                 poll.getType(),
                 poll.getTitle(),
                 poll.getContent(),
