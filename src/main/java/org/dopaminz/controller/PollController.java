@@ -11,6 +11,7 @@ import org.dopaminz.controller.response.PollResponse;
 import org.dopaminz.controller.response.PollSimpleResponse;
 import org.dopaminz.entity.Category;
 import org.dopaminz.service.PollService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -33,14 +34,16 @@ public class PollController {
 
     @GetMapping
     public CommonResponse<PageResponse<PollSimpleResponse>> getPolls(
-            @RequestParam(defaultValue = "false", required = false) Boolean hot,
+            @RequestParam(defaultValue = "false", required = false) boolean hot,
             @RequestParam(defaultValue = "DESC", required = false) String createdDate,
+            @RequestParam(defaultValue = "false", required = false) boolean isFinish,
             @RequestParam(required = false) List<Category> categories,
             @RequestParam(required = false) int page,
             @Auth Long memberId
     ) {
         Pageable pageable = PageRequest.of(page, 10, sort(hot, createdDate));
-        return CommonResponse.ok(PageResponse.from(pollService.getPolls(pageable, categories, memberId)));
+        Page<PollSimpleResponse> polls = pollService.getPolls(pageable, categories, memberId, isFinish);
+        return CommonResponse.ok(PageResponse.from(polls));
     }
 
     @GetMapping("/{pollId}")

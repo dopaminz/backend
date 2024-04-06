@@ -1,5 +1,6 @@
 package org.dopaminz.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.dopaminz.controller.request.PollRequest;
@@ -32,23 +33,29 @@ public class PollService {
     public Page<PollSimpleResponse> getPolls(
             Pageable pageable,
             List<Category> categories,
-            Long memberId
+            Long memberId,
+            boolean isFinish
     ) {
         Member member = memberRepository.getById(memberId);
+        Page<Poll> response;
+        LocalDateTime now = LocalDateTime.now();
         if (categories.isEmpty()) {
-            return pollRepository.findAll(pageable)
-                    .map(poll -> {
-                        Vote vote = voteRepository.findByPollAndMember(poll, member)
-                                .orElse(null);
-                        return PollSimpleResponse.from(poll, vote);
-                    });
+            if (isFinish) {
+                response = pollRepository.findAllFinishedPolls(now, pageable);
+            } else {
+                response = pollRepository.findAllProcessingPolls(now, pageable);
+            }
+        } else {
+            if (isFinish) {
+                response = pollRepository.findAllFinishedPollsByCategoryIn(categories, now, pageable);
+            } else {
+                response = pollRepository.findAllProcessingPollsByCategoryIn(categories, now, pageable);
+            }
         }
-        return pollRepository.findAllByCategoryIn(categories, pageable)
-                .map(poll -> {
-                    Vote vote = voteRepository.findByPollAndMember(poll, member)
-                            .orElse(null);
-                    return PollSimpleResponse.from(poll, vote);
-                });
+        return response.map(poll -> {
+            Vote vote = voteRepository.findByPollAndMember(poll, member).orElse(null);
+            return PollSimpleResponse.from(poll, vote);
+        });
     }
 
     public PollResponse getById(Long memberId, Long pollId) {
