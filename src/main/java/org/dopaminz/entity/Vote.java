@@ -35,18 +35,11 @@ public class Vote extends BaseEntity<Long> {
     private int voteNumber;
 
     public Vote(Poll poll, Member member, int voteNumber) {
-        validateSelfVote(poll, member);
         this.poll = poll;
         this.member = member;
         validateVoteNumber(voteNumber);
         this.voteNumber = voteNumber;
         poll.increaseVoteCount(voteNumber);
-    }
-
-    private void validateSelfVote(Poll poll, Member member) {
-        if (poll.getMember().equals(member)) {
-            throw new BadRequestException("투표를 만든 사람은 해당 투표에 참여할 수 없습니다.");
-        }
     }
 
     private void validateVoteNumber(int voteNumber) {
