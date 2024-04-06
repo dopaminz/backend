@@ -27,8 +27,8 @@ public record PollSimpleResponse(
         int votedNumber = isVoted ? vote.getVoteNumber() : 0;
         return new PollSimpleResponse(
                 poll.getId(),
-                vote.getMember().getId(),
-                vote.getMember().getNickname(),
+                poll.getMember().getId(),
+                poll.getMember().getNickname(),
                 poll.getType(),
                 poll.getTitle(),
                 poll.getContent(),
