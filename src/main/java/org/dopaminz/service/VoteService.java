@@ -1,6 +1,7 @@
 package org.dopaminz.service;
 
 import lombok.RequiredArgsConstructor;
+import org.dopaminz.common.exception.BadRequestException;
 import org.dopaminz.controller.request.VoteChangeRequest;
 import org.dopaminz.controller.request.VoteRequest;
 import org.dopaminz.entity.Member;
@@ -24,6 +25,9 @@ public class VoteService {
     public void vote(Long memberId, VoteRequest request) {
         Poll poll = pollRepository.getWithLockById(request.pollId());
         Member member = memberRepository.getById(memberId);
+        if (voteRepository.existsByPollAndMember(poll, member)) {
+            throw new BadRequestException("이미 참여한 투표입니다.");
+        }
         Vote vote = new Vote(poll, member, request.voteNumber());
         voteRepository.save(vote);
     }
