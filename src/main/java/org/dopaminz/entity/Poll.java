@@ -2,7 +2,16 @@ package org.dopaminz.entity;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,8 +19,6 @@ import lombok.NoArgsConstructor;
 import org.dopaminz.common.entity.BaseEntity;
 import org.dopaminz.common.exception.BadRequestException;
 import org.dopaminz.common.exception.ForbiddenException;
-
-import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -62,6 +69,7 @@ public class Poll extends BaseEntity<Long> {
             case 1 -> vote1Count++;
             case 2 -> vote2Count++;
         }
+        totalVoteCount++;
     }
 
     public void changeVote(int voteNumber) {
@@ -90,7 +98,8 @@ public class Poll extends BaseEntity<Long> {
     }
 
     @Builder
-    private Poll(PollType type, String vote1, String vote2, String title, String content, LocalDateTime endDate, Category category, Member member) {
+    private Poll(PollType type, String vote1, String vote2, String title, String content, LocalDateTime endDate,
+                 Category category, Member member) {
         this.type = type;
         this.vote1 = vote1;
         this.vote2 = vote2;
